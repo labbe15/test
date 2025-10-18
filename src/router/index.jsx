@@ -1,0 +1,1 @@
+// Placeholder if you want advanced routers later (lazy routes, loaders, etc.).

@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+
+/* Global helpers */
+.container {
+  @apply max-w-6xl mx-auto px-4;
+}
+.section {
+  @apply py-16 md:py-20;
+}
+.btn {
+  @apply inline-flex items-center gap-2 px-5 py-3 rounded-xl font-medium shadow-soft transition hover:-translate-y-0.5;
+}
+.btn-primary {
+  @apply btn bg-brand-accent text-brand-primary;
+}
+.btn-outline {
+  @apply btn border border-brand-accent text-brand-primary;
+}
+.card {
+  @apply bg-white rounded-2xl p-6 shadow-soft;
+}
+.heading {
+  @apply text-3xl md:text-4xl font-semibold tracking-tight;
+}
+.subheading {
+  @apply text-wood-700;
+}
+body { @apply bg-wood-50 text-brand-primary; }
