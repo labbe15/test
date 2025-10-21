@@ -1,38 +1,106 @@
-import { useState } from 'react'
-import SectionTitle from '../components/SectionTitle'
+import SectionTitle from '@components/SectionTitle'
+import { useForm } from '@/hooks/useForm'
+
+const initialValues = {
+  name: '',
+  email: '',
+  phone: '',
+  message: '',
+}
 
 export default function Contact() {
-  const [status, setStatus] = useState(null)
-
-  function onSubmit(e) {
-    e.preventDefault()
-    setStatus('Message envoyé (démo). Branchez ici votre service email.')
+  const handleFormSubmit = async (values) => {
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 500))
+    console.log('Form values:', values)
+    // Here you would send the data to your backend
   }
+
+  const { values, status, isSubmitting, handleChange, handleSubmit } = useForm(
+    initialValues,
+    handleFormSubmit
+  )
 
   return (
     <section className="section">
       <div className="container">
-        <SectionTitle title="Contact" subtitle="Un besoin, une question ? Réponse rapide." />
+        <SectionTitle
+          title="Contact"
+          subtitle="Un besoin, une question ? Réponse rapide."
+        />
         <div className="grid md:grid-cols-2 gap-8">
-          <form onSubmit={onSubmit} className="card space-y-3">
+          <form onSubmit={handleSubmit} className="card space-y-3">
             <div>
-              <label className="block text-sm font-medium">Nom</label>
-              <input className="mt-1 w-full border border-wood-300 rounded-xl p-3" required />
+              <label htmlFor="name" className="block text-sm font-medium">
+                Nom
+              </label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                value={values.name}
+                onChange={handleChange}
+                className="mt-1 w-full border border-wood-300 rounded-xl p-3 focus:ring-2 focus:ring-brand-accent focus:border-transparent"
+                required
+              />
             </div>
             <div>
-              <label className="block text-sm font-medium">Email</label>
-              <input type="email" className="mt-1 w-full border border-wood-300 rounded-xl p-3" required />
+              <label htmlFor="email" className="block text-sm font-medium">
+                Email
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                value={values.email}
+                onChange={handleChange}
+                className="mt-1 w-full border border-wood-300 rounded-xl p-3 focus:ring-2 focus:ring-brand-accent focus:border-transparent"
+                required
+              />
             </div>
             <div>
-              <label className="block text-sm font-medium">Téléphone</label>
-              <input className="mt-1 w-full border border-wood-300 rounded-xl p-3" />
+              <label htmlFor="phone" className="block text-sm font-medium">
+                Téléphone
+              </label>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                value={values.phone}
+                onChange={handleChange}
+                className="mt-1 w-full border border-wood-300 rounded-xl p-3 focus:ring-2 focus:ring-brand-accent focus:border-transparent"
+              />
             </div>
             <div>
-              <label className="block text-sm font-medium">Message</label>
-              <textarea className="mt-1 w-full border border-wood-300 rounded-xl p-3 min-h-[120px]" required></textarea>
+              <label htmlFor="message" className="block text-sm font-medium">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                value={values.message}
+                onChange={handleChange}
+                className="mt-1 w-full border border-wood-300 rounded-xl p-3 min-h-[120px] focus:ring-2 focus:ring-brand-accent focus:border-transparent"
+                required
+              />
             </div>
-            <button className="btn-primary" type="submit">Envoyer</button>
-            {status && <p className="text-green-700 text-sm">{status}</p>}
+            <button
+              className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+              type="submit"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? 'Envoi...' : 'Envoyer'}
+            </button>
+            {status && (
+              <p
+                className={`text-sm ${
+                  status.type === 'success' ? 'text-green-700' : 'text-red-700'
+                }`}
+                role="alert"
+              >
+                {status.message}
+              </p>
+            )}
           </form>
 
           <div className="card">

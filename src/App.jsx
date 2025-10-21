@@ -1,21 +1,26 @@
 import { Routes, Route } from 'react-router-dom'
-import MainLayout from './layouts/MainLayout'
-import Home from './pages/Home'
-import Services from './pages/Services'
-import Realisations from './pages/Realisations'
-import About from './pages/About'
-import Contact from './pages/Contact'
+import { lazy, Suspense } from 'react'
+import MainLayout from '@layouts/MainLayout'
+
+// Lazy load pages for better performance
+const Home = lazy(() => import('@pages/Home'))
+const Services = lazy(() => import('@pages/Services'))
+const Realisations = lazy(() => import('@pages/Realisations'))
+const About = lazy(() => import('@pages/About'))
+const Contact = lazy(() => import('@pages/Contact'))
 
 export default function App() {
   return (
-    <MainLayout>
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Chargement...</div>}>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/realisations" element={<Realisations />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<Home />} />
+          <Route path="services" element={<Services />} />
+          <Route path="realisations" element={<Realisations />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
+        </Route>
       </Routes>
-    </MainLayout>
+    </Suspense>
   )
 }

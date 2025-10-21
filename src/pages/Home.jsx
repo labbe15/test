@@ -1,26 +1,35 @@
-import Hero from '../components/Hero'
-import SectionTitle from '../components/SectionTitle'
-import ServiceCard from '../components/ServiceCard'
 import { Link } from 'react-router-dom'
+import Hero from '@components/Hero'
+import SectionTitle from '@components/SectionTitle'
+import ServiceCard from '@components/ServiceCard'
+import SEO from '@components/SEO'
+import { HOME_SERVICES } from '@/constants/services'
 
 export default function Home() {
   return (
     <>
+      <SEO
+        title="Accueil"
+        description="Menuiserie sur-mesure dans le Tarn - Fenêtres, portes, pergolas, terrasses. Artisan qualifié à Gaillac, Albi, Toulouse Est. Devis gratuit."
+        keywords="menuiserie, fenêtres, portes, pergolas, Gaillac, Albi, Toulouse, Tarn, artisan"
+      />
       <Hero />
 
       <section className="section">
         <div className="container">
-          <SectionTitle title="Nos services" subtitle="Du conseil à la pose, une qualité sans compromis." />
+          <SectionTitle
+            title="Nos services"
+            subtitle="Du conseil à la pose, une qualité sans compromis."
+          />
           <div className="grid md:grid-cols-3 gap-6">
-            <ServiceCard icon="🪟" title="Fenêtres & Baies" desc="PVC, alu, bois — pose soignée, étanchéité irréprochable." />
-            <ServiceCard icon="🚪" title="Portes & Portails" desc="Sécurité, isolation et esthétique — sur-mesure." />
-            <ServiceCard icon="🌿" title="Pergolas & Terrasses" desc="Conception et intégration parfaite à votre habitat." />
-            <ServiceCard icon="🪜" title="Escaliers & Garde-corps" desc="Fabrication artisanale, finitions haut de gamme." />
-            <ServiceCard icon="🧰" title="Dépannage & SAV" desc="Réglages, remplacements, entretiens — réactivité assurée." />
-            <ServiceCard icon="📐" title="Conseil & Mesures" desc="Accompagnement pro, métrés précis et transparents." />
+            {HOME_SERVICES.map((service) => (
+              <ServiceCard key={service.title} {...service} />
+            ))}
           </div>
           <div className="text-center mt-10">
-            <Link to="/services" className="btn-outline">Voir tous les services</Link>
+            <Link to="/services" className="btn-outline">
+              Voir tous les services
+            </Link>
           </div>
         </div>
       </section>
