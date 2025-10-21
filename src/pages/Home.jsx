@@ -1,6 +1,6 @@
-import Hero from '../components/Hero.jsx'
-import SectionTitle from '../components/SectionTitle.jsx'
-import ServiceCard from '../components/ServiceCard.jsx'
+import Hero from '../components/Hero'
+import SectionTitle from '../components/SectionTitle'
+import ServiceCard from '../components/ServiceCard'
 import { Link } from 'react-router-dom'
 
 export default function Home() {

@@ -1,10 +1,10 @@
 import { Routes, Route } from 'react-router-dom'
-import MainLayout from './layouts/MainLayout.jsx'
-import Home from './pages/Home.jsx'
-import Services from './pages/Services.jsx'
-import Realisations from './pages/Realisations.jsx'
-import About from './pages/About.jsx'
-import Contact from './pages/Contact.jsx'
+import MainLayout from './layouts/MainLayout'
+import Home from './pages/Home'
+import Services from './pages/Services'
+import Realisations from './pages/Realisations'
+import About from './pages/About'
+import Contact from './pages/Contact'
 
 export default function App() {
   return (

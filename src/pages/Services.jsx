@@ -1,5 +1,5 @@
-import SectionTitle from '../components/SectionTitle.jsx'
-import ServiceCard from '../components/ServiceCard.jsx'
+import SectionTitle from '../components/SectionTitle'
+import ServiceCard from '../components/ServiceCard'
 
 export default function Services() {
   const items = [

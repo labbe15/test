@@ -1,5 +1,5 @@
-import SectionTitle from '../components/SectionTitle.jsx'
 import { useState } from 'react'
+import SectionTitle from '../components/SectionTitle'
 
 export default function Contact() {
   const [status, setStatus] = useState(null)

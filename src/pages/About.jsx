@@ -1,4 +1,4 @@
-import SectionTitle from '../components/SectionTitle.jsx'
+import SectionTitle from '../components/SectionTitle'
 
 export default function About() {
   return (
